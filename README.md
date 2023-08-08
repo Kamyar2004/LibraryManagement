@@ -1,7 +1,7 @@
 # LibraryManagement 📚
 Library management software project for Windows OS based on .NET Framework and SQL Server
 
-//Requirements 🛑
+//Requirements 🛑 
 Microsoft Visual Studio
 .Net Framework 4.5 or higher
 SQL Server 2016 or higher

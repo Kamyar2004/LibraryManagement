@@ -2,9 +2,9 @@
 Library management software project for Windows OS based on .NET Framework and SQL Server
 
 //Requirements 🛑
-1) Microsoft Visual Studio
-2) .Net Framework 4.5 or higher
-3) SQL Server 2016 or higher
+Microsoft Visual Studio
+.Net Framework 4.5 or higher
+SQL Server 2016 or higher
 
 //Installation 🛠
 1) copy the script for creating tables in SQL from the path: LibraryManagement2023/LibraryManagement_Sql.txt

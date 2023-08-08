@@ -1,0 +1,216 @@
+USE [master]
+GO
+/****** Object:  Database [LibraryManagement_DB]    Script Date: 6/26/2023 11:26:03 AM ******/
+CREATE DATABASE [LibraryManagement_DB]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'LibraryManagment_DB', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL13.MSSQLSERVER\MSSQL\DATA\LibraryManagment_DB.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
+ LOG ON 
+( NAME = N'LibraryManagment_DB_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL13.MSSQLSERVER\MSSQL\DATA\LibraryManagment_DB_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
+GO
+ALTER DATABASE [LibraryManagement_DB] SET COMPATIBILITY_LEVEL = 130
+GO
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [LibraryManagement_DB].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+ALTER DATABASE [LibraryManagement_DB] SET ANSI_NULL_DEFAULT OFF 
+GO
+ALTER DATABASE [LibraryManagement_DB] SET ANSI_NULLS OFF 
+GO
+ALTER DATABASE [LibraryManagement_DB] SET ANSI_PADDING OFF 
+GO
+ALTER DATABASE [LibraryManagement_DB] SET ANSI_WARNINGS OFF 
+GO
+ALTER DATABASE [LibraryManagement_DB] SET ARITHABORT OFF 
+GO
+ALTER DATABASE [LibraryManagement_DB] SET AUTO_CLOSE OFF 
+GO
+ALTER DATABASE [LibraryManagement_DB] SET AUTO_SHRINK OFF 
+GO
+ALTER DATABASE [LibraryManagement_DB] SET AUTO_UPDATE_STATISTICS ON 
+GO
+ALTER DATABASE [LibraryManagement_DB] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+ALTER DATABASE [LibraryManagement_DB] SET CURSOR_DEFAULT  GLOBAL 
+GO
+ALTER DATABASE [LibraryManagement_DB] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+ALTER DATABASE [LibraryManagement_DB] SET NUMERIC_ROUNDABORT OFF 
+GO
+ALTER DATABASE [LibraryManagement_DB] SET QUOTED_IDENTIFIER OFF 
+GO
+ALTER DATABASE [LibraryManagement_DB] SET RECURSIVE_TRIGGERS OFF 
+GO
+ALTER DATABASE [LibraryManagement_DB] SET  DISABLE_BROKER 
+GO
+ALTER DATABASE [LibraryManagement_DB] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+ALTER DATABASE [LibraryManagement_DB] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+ALTER DATABASE [LibraryManagement_DB] SET TRUSTWORTHY OFF 
+GO
+ALTER DATABASE [LibraryManagement_DB] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+ALTER DATABASE [LibraryManagement_DB] SET PARAMETERIZATION SIMPLE 
+GO
+ALTER DATABASE [LibraryManagement_DB] SET READ_COMMITTED_SNAPSHOT OFF 
+GO
+ALTER DATABASE [LibraryManagement_DB] SET HONOR_BROKER_PRIORITY OFF 
+GO
+ALTER DATABASE [LibraryManagement_DB] SET RECOVERY FULL 
+GO
+ALTER DATABASE [LibraryManagement_DB] SET  MULTI_USER 
+GO
+ALTER DATABASE [LibraryManagement_DB] SET PAGE_VERIFY CHECKSUM  
+GO
+ALTER DATABASE [LibraryManagement_DB] SET DB_CHAINING OFF 
+GO
+ALTER DATABASE [LibraryManagement_DB] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+ALTER DATABASE [LibraryManagement_DB] SET TARGET_RECOVERY_TIME = 60 SECONDS 
+GO
+ALTER DATABASE [LibraryManagement_DB] SET DELAYED_DURABILITY = DISABLED 
+GO
+EXEC sys.sp_db_vardecimal_storage_format N'LibraryManagement_DB', N'ON'
+GO
+ALTER DATABASE [LibraryManagement_DB] SET QUERY_STORE = OFF
+GO
+USE [LibraryManagement_DB]
+GO
+ALTER DATABASE SCOPED CONFIGURATION SET LEGACY_CARDINALITY_ESTIMATION = OFF;
+GO
+ALTER DATABASE SCOPED CONFIGURATION SET MAXDOP = 0;
+GO
+ALTER DATABASE SCOPED CONFIGURATION SET PARAMETER_SNIFFING = ON;
+GO
+ALTER DATABASE SCOPED CONFIGURATION SET QUERY_OPTIMIZER_HOTFIXES = OFF;
+GO
+USE [LibraryManagement_DB]
+GO
+/****** Object:  Table [dbo].[Subjects]    Script Date: 6/26/2023 11:26:04 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Subjects](
+	[SubjectID] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](256) NOT NULL,
+ CONSTRAINT [PK_Subjects] PRIMARY KEY CLUSTERED 
+(
+	[SubjectID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Books]    Script Date: 6/26/2023 11:26:04 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Books](
+	[BookID] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](256) NOT NULL,
+	[Author] [nvarchar](256) NOT NULL,
+	[SubjectID] [int] NOT NULL,
+	[Publish_year] [nvarchar](256) NULL,
+	[Price] [int] NULL,
+ CONSTRAINT [PK_Books] PRIMARY KEY CLUSTERED 
+(
+	[BookID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  View [dbo].[BookInfo_view]    Script Date: 6/26/2023 11:26:04 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+create view [dbo].[BookInfo_view] as
+select Books.*,Subjects.Name as Subject from Books
+left join Subjects on Books.SubjectID=Subjects.SubjectID
+GO
+/****** Object:  Table [dbo].[Members]    Script Date: 6/26/2023 11:26:04 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Members](
+	[MemberID] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](256) NOT NULL,
+	[Family] [nvarchar](256) NOT NULL,
+	[Codemeli] [nvarchar](256) NOT NULL,
+	[Age] [int] NOT NULL,
+	[Mobile] [nvarchar](256) NULL,
+	[Address] [nvarchar](max) NULL,
+ CONSTRAINT [PK_Members] PRIMARY KEY CLUSTERED 
+(
+	[MemberID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY],
+ CONSTRAINT [Codemeli] UNIQUE NONCLUSTERED 
+(
+	[Codemeli] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[BorrowBooks]    Script Date: 6/26/2023 11:26:04 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[BorrowBooks](
+	[BorrowID] [int] IDENTITY(1,1) NOT NULL,
+	[BookID] [int] NOT NULL,
+	[MemberID] [int] NOT NULL,
+	[UserID] [int] NOT NULL,
+	[BorrowDate] [date] NULL,
+	[ReturnDate] [date] NULL,
+	[Givenback] [int] NULL,
+ CONSTRAINT [PK_BorrowBooks] PRIMARY KEY CLUSTERED 
+(
+	[BorrowID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Users]    Script Date: 6/26/2023 11:26:04 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Users](
+	[UserID] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](256) NOT NULL,
+	[Family] [nvarchar](256) NOT NULL,
+	[Username] [nvarchar](256) NOT NULL,
+	[Password] [nvarchar](256) NOT NULL,
+	[Access] [int] NOT NULL,
+	[Age] [int] NOT NULL,
+	[Mobile] [nvarchar](256) NOT NULL,
+ CONSTRAINT [PK_Users] PRIMARY KEY CLUSTERED 
+(
+	[UserID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY],
+ CONSTRAINT [Username] UNIQUE NONCLUSTERED 
+(
+	[Username] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  View [dbo].[BorrowBook_view]    Script Date: 6/26/2023 11:26:04 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+create view [dbo].[BorrowBook_view] as
+select BorrowBooks.*,Books.Name as BookName,
+Members.Name as MemberName,
+Users.Name as UserName
+from BorrowBooks
+inner join Books on BorrowBooks.BookID=Books.BookID
+inner join Members on BorrowBooks.MemberID=Members.MemberID
+inner join Users on BorrowBooks.UserID=Users.UserID
+GO
+USE [master]
+GO
+ALTER DATABASE [LibraryManagement_DB] SET  READ_WRITE 
+GO

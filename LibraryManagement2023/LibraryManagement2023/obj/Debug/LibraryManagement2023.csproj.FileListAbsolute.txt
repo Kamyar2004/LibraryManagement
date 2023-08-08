@@ -1,0 +1,17 @@
+C:\Users\Surface\Desktop\LibraryManagement2023\LibraryManagement2023\bin\Debug\LibraryManagement2023.exe.config
+C:\Users\Surface\Desktop\LibraryManagement2023\LibraryManagement2023\bin\Debug\LibraryManagement2023.exe
+C:\Users\Surface\Desktop\LibraryManagement2023\LibraryManagement2023\bin\Debug\LibraryManagement2023.pdb
+C:\Users\Surface\Desktop\LibraryManagement2023\LibraryManagement2023\obj\Debug\LibraryManagement2023.csprojAssemblyReference.cache
+C:\Users\Surface\Desktop\LibraryManagement2023\LibraryManagement2023\obj\Debug\LibraryManagement2023.FormMain.resources
+C:\Users\Surface\Desktop\LibraryManagement2023\LibraryManagement2023\obj\Debug\LibraryManagement2023.Properties.Resources.resources
+C:\Users\Surface\Desktop\LibraryManagement2023\LibraryManagement2023\obj\Debug\LibraryManagement2023.csproj.GenerateResource.cache
+C:\Users\Surface\Desktop\LibraryManagement2023\LibraryManagement2023\obj\Debug\LibraryManagement2023.csproj.CoreCompileInputs.cache
+C:\Users\Surface\Desktop\LibraryManagement2023\LibraryManagement2023\obj\Debug\LibraryManagement2023.exe
+C:\Users\Surface\Desktop\LibraryManagement2023\LibraryManagement2023\obj\Debug\LibraryManagement2023.pdb
+C:\Users\Surface\Desktop\LibraryManagement2023\LibraryManagement2023\obj\Debug\LibraryManagement2023.FormBorrowBooks.resources
+C:\Users\Surface\Desktop\LibraryManagement2023\LibraryManagement2023\obj\Debug\LibraryManagement2023.FormSubjects.resources
+C:\Users\Surface\Desktop\LibraryManagement2023\LibraryManagement2023\obj\Debug\LibraryManagement2023.FormBooks.resources
+C:\Users\Surface\Desktop\LibraryManagement2023\LibraryManagement2023\obj\Debug\LibraryManagement2023.FormUsers.resources
+C:\Users\Surface\Desktop\LibraryManagement2023\LibraryManagement2023\obj\Debug\LibraryManagement2023.FormMembers.resources
+C:\Users\Surface\Desktop\LibraryManagement2023\LibraryManagement2023\obj\Debug\LibraryManagement2023.FormLogin.resources
+C:\Users\Surface\Desktop\LibraryManagement2023\LibraryManagement2023\obj\Debug\LibraryManagement2023.csproj.CopyComplete
